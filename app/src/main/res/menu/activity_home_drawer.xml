@@ -14,6 +14,10 @@
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"
             android:title="Tools" />
+        <item
+            android:id="@+id/nav_qr_code"
+            android:icon="@drawable/ic_qr"
+            android:title="QR-coder" />
     </group>
 
     <item android:title="Communicate">
