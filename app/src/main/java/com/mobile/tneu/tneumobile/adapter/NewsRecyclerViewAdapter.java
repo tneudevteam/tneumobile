@@ -1,6 +1,8 @@
-package com.mobile.tneu.tneumobile.recyclerview;
+package com.mobile.tneu.tneumobile.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +27,7 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerVi
         private TextView mData;
         private TextView mTopic;
         private TextView mDescription;
+        private TextView mReadMore;
 
         public NewsViewHolder(View v) {
             super(v);
@@ -33,11 +36,8 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerVi
             mTopic = (TextView) itemView.findViewById(R.id.topic);
             mNewsImage = (ImageView) itemView.findViewById(R.id.newsImage);
             mDescription = (TextView) itemView.findViewById(R.id.description);
+            mReadMore = (TextView) itemView.findViewById(R.id.readMore);
         }
-    }
-
-    public NewsRecyclerViewAdapter(ArrayList<News> dataSet) {
-        this.mDataSet = dataSet;
     }
 
     @Override
@@ -55,6 +55,9 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerVi
         holder.mData.setText(mDataSet.get(position).getDate().substring(0, 16).replace("T", ", "));
         holder.mTopic.setText(mDataSet.get(position).getTopic());
         holder.mDescription.setText(mDataSet.get(position).getDescription());
+        holder.mReadMore.setText((Html.fromHtml("<a href=\"" + mDataSet.get(position)
+                .getReadMoreLink() + "\">Детальніше</a>")));
+        holder.mReadMore.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
     @Override
