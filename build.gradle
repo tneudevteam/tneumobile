@@ -16,6 +16,21 @@ allprojects {
     repositories {
         jcenter()
     }
+
+    ext {
+        compileSdkVersion = 23
+        targetSdkVersion = 23
+        buildToolsVersion = "24.0.2"
+        supportLibraryVersion = "24.1.1"
+
+        retrofitVersion = "2.0.2"
+        okHttpVersion = "3.2.0"
+
+        picassoVersion = "2.5.2"
+
+        rxJavaVersion = "1.1.0"
+        rxAndroidVersion = "1.2.1"
+    }
 }
 
 task clean(type: Delete) {
