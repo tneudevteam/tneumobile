@@ -9,7 +9,7 @@ android {
     defaultConfig {
         applicationId "com.mobile.tneu.tneumobile"
         minSdkVersion 17
-        targetSdkVersion
+        targetSdkVersion 24
         versionCode 1
         versionName "1.0"
     }
@@ -42,4 +42,7 @@ dependencies {
     // rxAndroid dependency
     compile "io.reactivex:rxandroid:$rxAndroidVersion"
     compile "io.reactivex:rxjava:$rxJavaVersion"
+
+    //QR
+    compile 'me.dm7.barcodescanner:zxing:1.8.4'
 }

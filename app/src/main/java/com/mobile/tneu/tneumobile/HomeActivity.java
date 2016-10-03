@@ -89,8 +89,9 @@ public class HomeActivity extends AppCompatActivity
       // Handle the camera action
     } else if (id == R.id.nav_gallery) {
 
-    } else if (id == R.id.nav_manage) {
-
+    } else if (id == R.id.nav_qr_code) {
+      Intent intent = new Intent(this, QRscannerActivity.class);
+      startActivity(intent);
     } else if (id == R.id.nav_send) {
       Intent intent = new Intent(this, NewsActivity.class);
       startActivity(intent);
