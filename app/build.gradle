@@ -45,4 +45,5 @@ dependencies {
 
     //QR
     compile 'me.dm7.barcodescanner:zxing:1.8.4'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha9'
 }

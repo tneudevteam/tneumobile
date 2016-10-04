@@ -29,13 +29,16 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerVi
     return new NewsViewHolder(v);
   }
 
+  //TODO: empty drawable
   @Override
   public void onBindViewHolder(NewsViewHolder holder, int position) {
 
-    // TODO: handle empty image link
     if (newses.get(position).getImageLink() != "") {
-      Picasso.with(holder.mNewsImage.getContext()).load(newses.get(position)
-          .getImageLink()).fit().centerInside().into(holder.mNewsImage);
+      Picasso.with(holder.mNewsImage.getContext())
+          .load(newses.get(position).getImageLink())
+          .fit()
+          .centerInside()
+          .into(holder.mNewsImage);
     }
 
     holder.mTitle.setText(newses.get(position).getTitle());
