@@ -105,7 +105,8 @@ public class HomeActivity extends MvpActivity<NewsView, NewsPresenter> implement
     if (id == R.id.nav_camera) {
       // Handle the camera action
     } else if (id == R.id.nav_gallery) {
-
+      Intent intent = new Intent(this, ModuleokActivity.class);
+      startActivity(intent);
     } else if (id == R.id.nav_qr_code) {
       Intent intent = new Intent(this, QRscannerActivity.class);
       startActivity(intent);

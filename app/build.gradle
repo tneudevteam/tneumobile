@@ -30,6 +30,9 @@ dependencies {
     compile "com.android.support:recyclerview-v7:$supportLibraryVersion"
     compile "com.squareup.picasso:picasso:$picassoVersion"
 
+    //view binding
+    compile 'com.jakewharton:butterknife:8.4.0'
+
     // mvp
     compile 'com.hannesdorfmann.mosby:mvp:2.0.1'
     compile 'com.hannesdorfmann.mosby:viewstate:2.0.1'
