@@ -26,7 +26,7 @@ public class ModuleokActivity extends AppCompatActivity {
     setContentView(R.layout.activity_moduleok);
     webView = (WebView) findViewById(R.id.web_view);
     progress = (ProgressBar) findViewById(R.id.progressBar);
-    startWebView("http://modulok.ml")
+    startWebView("http://modulok.ml");
   }
 
   @Override

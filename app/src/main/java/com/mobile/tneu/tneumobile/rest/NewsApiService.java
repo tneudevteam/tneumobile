@@ -15,9 +15,13 @@ import rx.Observable;
 
 public interface NewsApiService {
   String SERVICE_ENDPOINT = "http://139.59.211.163:9191/";
+  int GET_NEWS_LIMIT = 15;
 
-  @GET("/snippets/{page}")
-  Observable<List<News>> getNewsByPage(@Path("page") String pageNumber);
+  @GET("/snippets")
+  Observable<List<News>> getNewsByPage(@Query("limit") int newsLimit, @Query("skip") int skipAmount);
+
+  @GET("/snippets")
+  Observable<List<News>> getNewsAfterDate(@Query("since") String sinceDate);
 
   @GET("/article")
   Observable<News> getNewsByUrl(@Query("link") String newsUrl);

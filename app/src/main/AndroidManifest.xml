@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.mobile.tneu.tneumobile">
+          xmlns:tools="http://schemas.android.com/tools"
+          package="com.mobile.tneu.tneumobile">
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.INTERNET"/>
 
@@ -20,6 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".QRscannerActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
@@ -29,6 +31,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
         <activity android:name=".ModuleokActivity"
                   android:label="@string/app_name"
                   android:theme="@style/AppTheme.NoActionBar">
@@ -38,6 +41,13 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
+        <service android:name=".service.NewsWatcherService"
+                 android:exported="false"/>
+
+      <receiver android:name=".service.NewsWatcherResponseReceiver"
+                android:process=":remote">
+      </receiver>
     </application>
 
 </manifest>

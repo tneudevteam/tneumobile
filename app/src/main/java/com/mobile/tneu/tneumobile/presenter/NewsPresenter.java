@@ -26,7 +26,7 @@ public class NewsPresenter extends MvpBasePresenter<NewsView> {
 
   public void getNews(){
     NewsApiService service = ServiceFactory.createRetrofitService(NewsApiService.class, NewsApiService.SERVICE_ENDPOINT);
-    subscriptions.add(service.getNewsByPage("1")
+    subscriptions.add(service.getNewsByPage(NewsApiService.GET_NEWS_LIMIT, 0)
         .subscribeOn(Schedulers.newThread())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(new Subscriber<List<News>>() {
@@ -34,6 +34,7 @@ public class NewsPresenter extends MvpBasePresenter<NewsView> {
           public void onCompleted() {
             if (getView() != null)
             getView().onNewsReceived(news);
+            subscriptions.unsubscribe();
           }
 
           @Override
@@ -50,6 +51,4 @@ public class NewsPresenter extends MvpBasePresenter<NewsView> {
           }
         }));
   }
-
-
 }
