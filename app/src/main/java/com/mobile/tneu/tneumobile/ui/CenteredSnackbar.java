@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 /**
  * Created by stepanv on 29.09.16.
@@ -22,14 +21,14 @@ public class CenteredSnackbar {
     ViewGroup.LayoutParams params = snackbarView.getLayoutParams();
 
     if (params instanceof FrameLayout.LayoutParams) {
-      ((FrameLayout.LayoutParams)params).gravity = Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM;
+      ((FrameLayout.LayoutParams) params).gravity = Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM;
     } else if (params instanceof LinearLayout.LayoutParams) {
-      ((LinearLayout.LayoutParams)params).gravity = Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM;
+      ((LinearLayout.LayoutParams) params).gravity = Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM;
     } else if (params instanceof CoordinatorLayout.LayoutParams) {
-      ((CoordinatorLayout.LayoutParams)params).gravity = Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM;
+      ((CoordinatorLayout.LayoutParams) params).gravity = Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM;
     } else if (params instanceof RelativeLayout.LayoutParams) {
-      ((RelativeLayout.LayoutParams)params).addRule(RelativeLayout.CENTER_HORIZONTAL);
-      ((RelativeLayout.LayoutParams)params).addRule(RelativeLayout.ALIGN_BOTTOM);
+      ((RelativeLayout.LayoutParams) params).addRule(RelativeLayout.CENTER_HORIZONTAL);
+      ((RelativeLayout.LayoutParams) params).addRule(RelativeLayout.ALIGN_BOTTOM);
     }
 
     snackbarView.setLayoutParams(params);

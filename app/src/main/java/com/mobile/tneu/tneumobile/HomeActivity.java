@@ -59,8 +59,6 @@ public class HomeActivity extends MvpActivity<NewsView, NewsPresenter> implement
     NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
     navigationView.setNavigationItemSelectedListener(this);
 
-//    startNewsService();
-//    registerNewsReceiver();
     sheduleAlarm();
 
     RecyclerView recyclerView = (RecyclerView) findViewById(R.id.news_recycler_view);
@@ -80,17 +78,6 @@ public class HomeActivity extends MvpActivity<NewsView, NewsPresenter> implement
     alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, firstMillis,
         60 * 1000, pIntent);
   }
-
-//  private void startNewsService() {
-//    Intent serviceIntent = new Intent(this, NewsWatcherService.class);
-//    this.startService(serviceIntent);
-//  }
-//
-//  private void registerNewsReceiver() {
-//    IntentFilter intentFilter = new IntentFilter(NewsWatcherService.BROADCAST_ACTION);
-//    NewsWatcherResponseReceiver newsReceiver = new NewsWatcherResponseReceiver();
-//    LocalBroadcastManager.getInstance(this).registerReceiver(newsReceiver, intentFilter);
-//  }
 
   @Override
   public void onBackPressed() {
@@ -122,6 +109,12 @@ public class HomeActivity extends MvpActivity<NewsView, NewsPresenter> implement
     }
 
     return super.onOptionsItemSelected(item);
+  }
+
+  @Override
+  protected void onDestroy() {
+    presenter.onDestroy();
+    super.onDestroy();
   }
 
   @SuppressWarnings("StatementWithEmptyBody")

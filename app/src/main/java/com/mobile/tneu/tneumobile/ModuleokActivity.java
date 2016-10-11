@@ -1,6 +1,5 @@
 package com.mobile.tneu.tneumobile;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -56,9 +55,9 @@ public class ModuleokActivity extends AppCompatActivity {
 
       @Override
       public void onPageFinished(WebView view, String url) {
-          if (progress != null) {
-            progress.setVisibility(View.INVISIBLE);
-          }
+        if (progress != null) {
+          progress.setVisibility(View.INVISIBLE);
+        }
       }
     });
 

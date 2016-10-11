@@ -13,7 +13,6 @@ import com.mobile.tneu.tneumobile.R;
 import com.mobile.tneu.tneumobile.model.News;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -59,13 +58,13 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerVi
     }
   }
 
-  public void clear(){
+  public void clear() {
     if (newses != null) {
       newses.clear();
     }
   }
 
-  public void replaceAll(List<News> newList){
+  public void replaceAll(List<News> newList) {
     clear();
     if (newses == null) {
       newses = newList;

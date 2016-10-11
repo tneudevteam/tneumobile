@@ -20,11 +20,11 @@ import com.mobile.tneu.tneumobile.ui.CenteredSnackbar;
  */
 
 public class PermissionUtil {
-  public static boolean  checkCameraPermission(Activity activity, View view, int requestCode){
+  public static boolean checkCameraPermission(Activity activity, View view, int requestCode) {
     return checkOrAksCameraPermission(activity, view, requestCode, Manifest.permission.CAMERA, activity.getString(R.string.deny_camera));
   }
 
-  public static void showSnackbarForCameraPermission(Activity activity, View view){
+  public static void showSnackbarForCameraPermission(Activity activity, View view) {
     askPermission(activity, view, QRscannerActivity.REQUEST_PERMISSION_CAMERA, Manifest.permission.CAMERA, activity.getString(R.string.deny_camera));
   }
 

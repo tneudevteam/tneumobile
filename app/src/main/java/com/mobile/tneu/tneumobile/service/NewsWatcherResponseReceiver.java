@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-import com.mobile.tneu.tneumobile.HomeActivity;
 import com.mobile.tneu.tneumobile.Utils.Logger;
 
 /**
@@ -13,8 +12,8 @@ import com.mobile.tneu.tneumobile.Utils.Logger;
  */
 
 public class NewsWatcherResponseReceiver extends BroadcastReceiver {
-  private static final String LOG_TAG = Logger.getLogTag(NewsWatcherResponseReceiver.class);
   public static final int REQUEST_CODE = 1;
+  private static final String LOG_TAG = Logger.getLogTag(NewsWatcherResponseReceiver.class);
 
   @Override
   public void onReceive(Context context, Intent intent) {
