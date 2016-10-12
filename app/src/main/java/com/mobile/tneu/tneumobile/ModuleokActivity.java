@@ -25,7 +25,7 @@ public class ModuleokActivity extends AppCompatActivity {
     setContentView(R.layout.activity_moduleok);
     webView = (WebView) findViewById(R.id.web_view);
     progress = (ProgressBar) findViewById(R.id.progressBar);
-    startWebView("http://modulok.ml");
+    startWebView("http://modulok.ml/auth");
   }
 
   @Override
@@ -39,7 +39,7 @@ public class ModuleokActivity extends AppCompatActivity {
 
   private void startWebView(String url) {
     webView.setWebViewClient(new WebViewClient() {
-
+//TODO: fix loading view
       @Override
       public boolean shouldOverrideUrlLoading(WebView view, String url) {
         view.loadUrl(url);
