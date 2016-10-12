@@ -9,6 +9,7 @@ import android.util.Log;
 
 import com.mobile.tneu.tneumobile.HomeActivity;
 import com.mobile.tneu.tneumobile.R;
+import com.mobile.tneu.tneumobile.Utils.AppDefaultPrefs;
 import com.mobile.tneu.tneumobile.Utils.Logger;
 import com.mobile.tneu.tneumobile.Utils.NewsUtil;
 import com.mobile.tneu.tneumobile.model.News;
@@ -43,8 +44,8 @@ public class NewsWatcherService extends IntentService {
   protected void onHandleIntent(Intent intent) {
     Log.d(LOG_TAG, "Watcher handle intent");
     NewsApiService service = ServiceFactory.createRetrofitService(NewsApiService.class, NewsApiService.SERVICE_ENDPOINT);
-    String thisMoment = NewsUtil.getISOStringForCurrentDate();
-    subscriptions.add(service.getNewsAfterDate(thisMoment)
+    String lastLoadedNewsDate = AppDefaultPrefs.getAppString(AppDefaultPrefs.PREFS_DATE_KEY);
+    subscriptions.add(service.getNewsAfterDate(lastLoadedNewsDate)
         .subscribe(new Subscriber<List<News>>() {
           @Override
           public void onCompleted() {
@@ -70,6 +71,8 @@ public class NewsWatcherService extends IntentService {
               } else {
                 notifManager.notify(NOTIFICATION_ID, buildNotif(getString(R.string.app_name), newses.get(newses.size() - 1).getTitle(), newses.size()).build());
               }
+
+              AppDefaultPrefs.putAppString(AppDefaultPrefs.PREFS_DATE_KEY, newses.get(0).getDate());
             }
           }
         }));

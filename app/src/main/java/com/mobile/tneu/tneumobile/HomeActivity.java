@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.hannesdorfmann.mosby.mvp.MvpActivity;
+import com.mobile.tneu.tneumobile.Utils.Injector;
 import com.mobile.tneu.tneumobile.Utils.Logger;
 import com.mobile.tneu.tneumobile.adapter.NewsRecyclerViewAdapter;
 import com.mobile.tneu.tneumobile.model.News;
@@ -35,6 +36,9 @@ public class HomeActivity extends MvpActivity<NewsView, NewsPresenter> implement
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+
+    Injector.get().setContext(this);
+
     init();
     presenter.getNews();
   }
@@ -76,7 +80,7 @@ public class HomeActivity extends MvpActivity<NewsView, NewsPresenter> implement
     long firstMillis = System.currentTimeMillis();
     AlarmManager alarm = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
     alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, firstMillis,
-        60 * 1000, pIntent);
+        AlarmManager.INTERVAL_HALF_HOUR, pIntent);
   }
 
   @Override

@@ -1,6 +1,7 @@
 package com.mobile.tneu.tneumobile.presenter;
 
 import com.hannesdorfmann.mosby.mvp.MvpBasePresenter;
+import com.mobile.tneu.tneumobile.Utils.AppDefaultPrefs;
 import com.mobile.tneu.tneumobile.Utils.Logger;
 import com.mobile.tneu.tneumobile.model.News;
 import com.mobile.tneu.tneumobile.rest.NewsApiService;
@@ -32,8 +33,12 @@ public class NewsPresenter extends MvpBasePresenter<NewsView> {
         .subscribe(new Subscriber<List<News>>() {
           @Override
           public void onCompleted() {
-            if (getView() != null)
+            if (getView() != null) {
               getView().onNewsReceived(news);
+            }
+
+            AppDefaultPrefs.putAppString(AppDefaultPrefs.PREFS_DATE_KEY, news.get(0).getDate());
+
             subscriptions.unsubscribe();
           }
 
