@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">tneu-mobile</string>
+  <string name="app_name">tneu-mobile</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="action_settings">Settings</string>
-    <string name="deny_camera">You deny access to your camera</string>
-    <string name="permission_action_grant">GRANT</string>
-    <string name="permission_action_setting">SETTINGS</string>
+  <string name="navigation_drawer_open">Open navigation drawer</string>
+  <string name="navigation_drawer_close">Close navigation drawer</string>
+  <string name="action_settings">Settings</string>
+  <string name="deny_camera">You deny access to your camera</string>
+  <string name="permission_action_grant">GRANT</string>
+  <string name="permission_action_setting">SETTINGS</string>
 </resources>
