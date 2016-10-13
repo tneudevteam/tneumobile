@@ -128,7 +128,8 @@ public class HomeActivity extends MvpActivity<NewsView, NewsPresenter> implement
     int id = item.getItemId();
 
     if (id == R.id.nav_camera) {
-      // Handle the camera action
+      Intent intent = new Intent(this, MapActivity.class);
+      startActivity(intent);
     } else if (id == R.id.nav_gallery) {
       Intent intent = new Intent(this, ModuleokActivity.class);
       startActivity(intent);
