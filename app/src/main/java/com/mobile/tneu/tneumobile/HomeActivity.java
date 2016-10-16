@@ -67,8 +67,17 @@ public class HomeActivity extends MvpActivity<NewsView, NewsPresenter> implement
 
     RecyclerView recyclerView = (RecyclerView) findViewById(R.id.news_recycler_view);
     recyclerView.setLayoutManager(new LinearLayoutManager(this));
-    adapter = new NewsRecyclerViewAdapter();
+    adapter = new NewsRecyclerViewAdapter(recyclerView);
     recyclerView.setAdapter(adapter);
+    adapter.setOnLoadMoreListener(new NewsRecyclerViewAdapter.OnLoadMoreListener() {
+      @Override
+      public void onLoadMore() {
+        //TODO replace
+        //region Test data
+        presenter.getNews(adapter.getItemCount());
+        //endregion
+      }
+    });
   }
 
   private void sheduleAlarm() {
@@ -145,7 +154,11 @@ public class HomeActivity extends MvpActivity<NewsView, NewsPresenter> implement
 
   @Override
   public void onNewsReceived(List<News> news) {
-    adapter.replaceAll(news);
+    //TODO replace
+    //region Test data
+    adapter.addAll(news);
+    //endregion
+//    adapter.replaceAll(news);
   }
 
   @Override

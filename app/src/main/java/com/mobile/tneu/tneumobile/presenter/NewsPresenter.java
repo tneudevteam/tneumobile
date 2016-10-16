@@ -25,37 +25,76 @@ public class NewsPresenter extends MvpBasePresenter<NewsView> {
 
   private List<News> news;
 
-  public void getNews() {
-    NewsApiService service = ServiceFactory.createRetrofitService(NewsApiService.class, NewsApiService.SERVICE_ENDPOINT);
-    subscriptions.add(service.getNewsByPage(NewsApiService.GET_NEWS_LIMIT, 0)
-        .subscribeOn(Schedulers.newThread())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(new Subscriber<List<News>>() {
-          @Override
-          public void onCompleted() {
-            if (getView() != null) {
-              getView().onNewsReceived(news);
-            }
+    //TODO Remove
+    //region Test Data
+    public void getNews(){
+        getNews(0);
+    }
+    public void getNews(int skipAmount) {
+        NewsApiService service = ServiceFactory.createRetrofitService(NewsApiService.class, NewsApiService.SERVICE_ENDPOINT);
+        subscriptions.add(service.getNewsByPage(NewsApiService.GET_NEWS_LIMIT, skipAmount)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<List<News>>() {
+                    @Override
+                    public void onCompleted() {
+                        if (getView() != null) {
+                            getView().onNewsReceived(news);
+                        }
 
-            AppDefaultPrefs.putAppString(AppDefaultPrefs.PREFS_DATE_KEY, news.get(0).getDate());
+                        AppDefaultPrefs.putAppString(AppDefaultPrefs.PREFS_DATE_KEY, news.get(0).getDate());
 
-            subscriptions.unsubscribe();
-          }
+                        subscriptions.clear();
+                    }
 
-          @Override
-          public void onError(Throwable e) {
+                    @Override
+                    public void onError(Throwable e) {
 
-          }
+                    }
 
-          @Override
-          public void onNext(List<News> newses) {
-            news = newses;
-            for (News news : newses) {
-              Logger.d(LOG_TAG, news.getTitle());
-            }
-          }
-        }));
-  }
+                    @Override
+                    public void onNext(List<News> newses) {
+                        news = newses;
+                        for (News news : newses) {
+                            Logger.d(LOG_TAG, news.getTitle());
+                        }
+                    }
+                }));
+    }
+    //endregion
+
+    //TODO Uncomment
+//  public void getNews() {
+//    NewsApiService service = ServiceFactory.createRetrofitService(NewsApiService.class, NewsApiService.SERVICE_ENDPOINT);
+//    subscriptions.add(service.getNewsByPage(NewsApiService.GET_NEWS_LIMIT, 0)
+//        .subscribeOn(Schedulers.newThread())
+//        .observeOn(AndroidSchedulers.mainThread())
+//        .subscribe(new Subscriber<List<News>>() {
+//          @Override
+//          public void onCompleted() {
+//            if (getView() != null) {
+//              getView().onNewsReceived(news);
+//            }
+//
+//            AppDefaultPrefs.putAppString(AppDefaultPrefs.PREFS_DATE_KEY, news.get(0).getDate());
+//
+//            subscriptions.unsubscribe();
+//          }
+//
+//          @Override
+//          public void onError(Throwable e) {
+//
+//          }
+//
+//          @Override
+//          public void onNext(List<News> newses) {
+//            news = newses;
+//            for (News news : newses) {
+//              Logger.d(LOG_TAG, news.getTitle());
+//            }
+//          }
+//        }));
+//  }
 
   public void onDestroy() {
     subscriptions.unsubscribe();
