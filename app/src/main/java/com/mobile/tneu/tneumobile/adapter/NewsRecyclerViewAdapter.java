@@ -33,11 +33,9 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerVi
   public void onBindViewHolder(NewsViewHolder holder, int position) {
 
     if (newses.get(position).getImageLink() != "") {
-      Picasso.with(holder.mNewsImage.getContext())
-          .load(newses.get(position).getImageLink())
-          .fit()
-          .centerInside()
-          .into(holder.mNewsImage);
+      bindImage(holder, newses.get(position).getImageLink());
+    } else {
+      bindImage(holder, "");
     }
 
     holder.mTitle.setText(newses.get(position).getTitle());
@@ -47,6 +45,14 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerVi
     holder.mReadMore.setText((Html.fromHtml("<a href=\"" + newses.get(position)
         .getReadMoreLink() + "\">Детальніше</a>")));
     holder.mReadMore.setMovementMethod(LinkMovementMethod.getInstance());
+  }
+
+  private void bindImage(NewsViewHolder holder, String imageUrl) {
+    Picasso.with(holder.mNewsImage.getContext())
+        .load(imageUrl)
+        .fit()
+        .centerInside()
+        .into(holder.mNewsImage);
   }
 
   @Override
