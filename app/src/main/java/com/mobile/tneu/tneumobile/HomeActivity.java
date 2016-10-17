@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -72,10 +73,7 @@ public class HomeActivity extends MvpActivity<NewsView, NewsPresenter> implement
     adapter.setOnLoadMoreListener(new NewsRecyclerViewAdapter.OnLoadMoreListener() {
       @Override
       public void onLoadMore() {
-        //TODO replace
-        //region Test data
         presenter.getNews(adapter.getItemCount());
-        //endregion
       }
     });
   }
@@ -154,11 +152,7 @@ public class HomeActivity extends MvpActivity<NewsView, NewsPresenter> implement
 
   @Override
   public void onNewsReceived(List<News> news) {
-    //TODO replace
-    //region Test data
     adapter.addAll(news);
-    //endregion
-//    adapter.replaceAll(news);
   }
 
   @Override

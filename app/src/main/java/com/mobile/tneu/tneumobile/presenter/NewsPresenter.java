@@ -22,79 +22,52 @@ import rx.subscriptions.CompositeSubscription;
 public class NewsPresenter extends MvpBasePresenter<NewsView> {
   private final String LOG_TAG = Logger.getLogTag(NewsPresenter.class);
   private CompositeSubscription subscriptions = new CompositeSubscription();
+  private boolean isLastNews;
 
   private List<News> news;
 
-    //TODO Remove
-    //region Test Data
-    public void getNews(){
-        getNews(0);
+  public void getNews() {
+    isLastNews = true;
+    getNews(0);
+  }
+
+  private void updateIfLastNewsDate() {
+    if (isLastNews) {
+      AppDefaultPrefs.putAppString(AppDefaultPrefs.PREFS_DATE_KEY, news.get(0).getDate());
+      isLastNews = false;
+      Logger.d(LOG_TAG, "Set last news date to " + news.get(0).getDate());
     }
-    public void getNews(int skipAmount) {
-        NewsApiService service = ServiceFactory.createRetrofitService(NewsApiService.class, NewsApiService.SERVICE_ENDPOINT);
-        subscriptions.add(service.getNewsByPage(NewsApiService.GET_NEWS_LIMIT, skipAmount)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<List<News>>() {
-                    @Override
-                    public void onCompleted() {
-                        if (getView() != null) {
-                            getView().onNewsReceived(news);
-                        }
+  }
 
-                        AppDefaultPrefs.putAppString(AppDefaultPrefs.PREFS_DATE_KEY, news.get(0).getDate());
+  public void getNews(int skipAmount) {
+    NewsApiService service = ServiceFactory.createRetrofitService(NewsApiService.class, NewsApiService.SERVICE_ENDPOINT);
+    subscriptions.add(service.getNewsByPage(NewsApiService.GET_NEWS_LIMIT, skipAmount)
+        .subscribeOn(Schedulers.newThread())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(new Subscriber<List<News>>() {
+          @Override
+          public void onCompleted() {
+            if (getView() != null) {
+              getView().onNewsReceived(news);
+            }
+            updateIfLastNewsDate();
+            subscriptions.clear();
+          }
 
-                        subscriptions.clear();
-                    }
+          @Override
+          public void onError(Throwable e) {
 
-                    @Override
-                    public void onError(Throwable e) {
+          }
 
-                    }
-
-                    @Override
-                    public void onNext(List<News> newses) {
-                        news = newses;
-                        for (News news : newses) {
-                            Logger.d(LOG_TAG, news.getTitle());
-                        }
-                    }
-                }));
-    }
-    //endregion
-
-    //TODO Uncomment
-//  public void getNews() {
-//    NewsApiService service = ServiceFactory.createRetrofitService(NewsApiService.class, NewsApiService.SERVICE_ENDPOINT);
-//    subscriptions.add(service.getNewsByPage(NewsApiService.GET_NEWS_LIMIT, 0)
-//        .subscribeOn(Schedulers.newThread())
-//        .observeOn(AndroidSchedulers.mainThread())
-//        .subscribe(new Subscriber<List<News>>() {
-//          @Override
-//          public void onCompleted() {
-//            if (getView() != null) {
-//              getView().onNewsReceived(news);
-//            }
-//
-//            AppDefaultPrefs.putAppString(AppDefaultPrefs.PREFS_DATE_KEY, news.get(0).getDate());
-//
-//            subscriptions.unsubscribe();
-//          }
-//
-//          @Override
-//          public void onError(Throwable e) {
-//
-//          }
-//
-//          @Override
-//          public void onNext(List<News> newses) {
-//            news = newses;
-//            for (News news : newses) {
-//              Logger.d(LOG_TAG, news.getTitle());
-//            }
-//          }
-//        }));
-//  }
+          @Override
+          public void onNext(List<News> newses) {
+            news = newses;
+            for (News news : newses) {
+              Logger.d(LOG_TAG, news.getTitle());
+            }
+          }
+        }));
+  }
 
   public void onDestroy() {
     subscriptions.unsubscribe();
