@@ -10,4 +10,5 @@
   <string name="about_content">Creators: Stepan Valchyshyn, \nVladuslav Golubev, \nVitaliy Kobytsia, \nIhor Borivets, \nViktor Fedorovich, \nVasiliy Koval \n \nAll Rights Reserved</string>
   <string name="about_title">About</string>
   <string name="about_negative_text">Close</string>
+  <string name="check_notifications_text">Сповіщення про новини</string>
 </resources>

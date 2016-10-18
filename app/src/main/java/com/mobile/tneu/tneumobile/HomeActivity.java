@@ -1,8 +1,5 @@
 package com.mobile.tneu.tneumobile;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -19,6 +16,7 @@ import android.view.View;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.hannesdorfmann.mosby.mvp.MvpActivity;
+import com.mobile.tneu.tneumobile.Utils.AppDefaultPrefs;
 import com.mobile.tneu.tneumobile.Utils.Injector;
 import com.mobile.tneu.tneumobile.Utils.Logger;
 import com.mobile.tneu.tneumobile.adapter.NewsRecyclerViewAdapter;
@@ -64,7 +62,7 @@ public class HomeActivity extends MvpActivity<NewsView, NewsPresenter> implement
     NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
     navigationView.setNavigationItemSelectedListener(this);
 
-    sheduleAlarm();
+    checkToSheduleAlarm();
 
     RecyclerView recyclerView = (RecyclerView) findViewById(R.id.news_recycler_view);
     recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -78,17 +76,12 @@ public class HomeActivity extends MvpActivity<NewsView, NewsPresenter> implement
     });
   }
 
-  private void sheduleAlarm() {
-    Intent intent = new Intent(getApplicationContext(), NewsWatcherResponseReceiver.class);
-
-    final PendingIntent pIntent = PendingIntent.getBroadcast(this, NewsWatcherResponseReceiver.REQUEST_CODE,
-        intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-    long firstMillis = System.currentTimeMillis();
-    AlarmManager alarm = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
-    alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, firstMillis,
-        AlarmManager.INTERVAL_HALF_HOUR, pIntent);
+  private void checkToSheduleAlarm() {
+    if (AppDefaultPrefs.getAppBoolean(AppDefaultPrefs.PREFS_SETTINGS_SHOW_NOTIF)) {
+      NewsWatcherResponseReceiver.sheduleAlarm();
+    }
   }
+
 
   @Override
   public void onBackPressed() {
@@ -116,6 +109,8 @@ public class HomeActivity extends MvpActivity<NewsView, NewsPresenter> implement
 
     //noinspection SimplifiableIfStatement
     if (id == R.id.action_settings) {
+      Intent intent = new Intent(this, SettingsActivity.class);
+      startActivity(intent);
       return true;
     }
 
@@ -143,7 +138,7 @@ public class HomeActivity extends MvpActivity<NewsView, NewsPresenter> implement
     } else if (id == R.id.nav_qr_code) {
       Intent intent = new Intent(this, QRscannerActivity.class);
       startActivity(intent);
-    }  else if (id == R.id.nav_about) {
+    } else if (id == R.id.nav_about) {
       showDialog();
     }
 

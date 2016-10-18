@@ -10,6 +10,8 @@ import android.support.annotation.NonNull;
 
 public class AppDefaultPrefs {
   public static final String PREFS_DATE_KEY = "tneumobile.APP_PREFS.DATE";
+  public static final String PREFS_SETTINGS_SHOW_NOTIF = "tneumobile.APP_PREFS.SETTINGS.SHOW_NOTIF";
+
   private static final String PREFS_KEY = "tneumobile.APP_PREFS";
   private static final int PREFS_MODE = Context.MODE_PRIVATE;
 
@@ -17,18 +19,12 @@ public class AppDefaultPrefs {
     return context.getSharedPreferences(PREFS_KEY, PREFS_MODE);
   }
 
-  public static String getString(@NonNull Context context, String key, String defaultValue) {
-    return getSharedPrefs(context).getString(key, defaultValue);
-  }
-
   public static String getAppString(String key) {
-    return getString(Injector.get().getContext(), key, "");
+    return getSharedPrefs(Injector.get().getContext()).getString(key, "");
   }
 
-  public static void putString(@NonNull Context context, String key, String value) {
-    getSharedPrefs(context).edit()
-        .putString(key, value)
-        .apply();
+  public static Boolean getAppBoolean(String key) {
+    return getSharedPrefs(Injector.get().getContext()).getBoolean(key, true);
   }
 
   public static void putAppString(String key, String value) {
@@ -37,8 +33,14 @@ public class AppDefaultPrefs {
         .apply();
   }
 
-  public static void remove(@NonNull Context context, String key) {
-    getSharedPrefs(context).edit()
+  public static void putAppBoolean(String key, Boolean value) {
+    getSharedPrefs(Injector.get().getContext()).edit()
+        .putBoolean(key, value)
+        .apply();
+  }
+
+  public static void remove(String key) {
+    getSharedPrefs(Injector.get().getContext()).edit()
         .remove(key)
         .apply();
   }
