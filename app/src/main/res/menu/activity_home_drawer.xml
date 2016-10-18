@@ -4,20 +4,20 @@
   <group android:checkableBehavior="single">
     <item
         android:id="@+id/nav_camera"
-        android:icon="@drawable/ic_menu_camera"
-        android:title="Import"/>
+        android:icon="@drawable/ic_menu_map"
+        android:title="Карта кампусу"/>
     <item
         android:id="@+id/nav_gallery"
-        android:icon="@drawable/ic_menu_gallery"
-        android:title="Gallery"/>
-    <item
-        android:id="@+id/nav_manage"
-        android:icon="@drawable/ic_menu_manage"
-        android:title="Tools"/>
+        android:icon="@drawable/ic_menu_journal"
+        android:title="Залікова книжка"/>
     <item
         android:id="@+id/nav_qr_code"
         android:icon="@drawable/ic_qr"
-        android:title="QR-coder"/>
+        android:title="QR-сканер"/>
+    <item
+        android:id="@+id/nav_about"
+        android:icon="@drawable/ic_menu_about"
+        android:title="Про нас"/>
   </group>
 
 </menu>

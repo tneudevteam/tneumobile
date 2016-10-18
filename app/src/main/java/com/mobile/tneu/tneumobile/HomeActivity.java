@@ -9,7 +9,6 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.hannesdorfmann.mosby.mvp.MvpActivity;
 import com.mobile.tneu.tneumobile.Utils.Injector;
 import com.mobile.tneu.tneumobile.Utils.Logger;
@@ -143,11 +143,22 @@ public class HomeActivity extends MvpActivity<NewsView, NewsPresenter> implement
     } else if (id == R.id.nav_qr_code) {
       Intent intent = new Intent(this, QRscannerActivity.class);
       startActivity(intent);
+    }  else if (id == R.id.nav_about) {
+      showDialog();
     }
 
     DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
     drawer.closeDrawer(GravityCompat.START);
     return true;
+  }
+
+  private void showDialog() {
+    new MaterialDialog.Builder(this)
+        .title(R.string.about_title)
+        .content(R.string.about_content)
+        .negativeText(R.string.about_negative_text)
+        .autoDismiss(true)
+        .show();
   }
 
   @Override
