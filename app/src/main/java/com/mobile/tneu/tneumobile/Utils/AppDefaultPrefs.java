@@ -23,6 +23,10 @@ public class AppDefaultPrefs {
     return getSharedPrefs(Injector.get().getContext()).getString(key, "");
   }
 
+  public static String getAppString(String key, Context context) {
+    return getSharedPrefs(context).getString(key, "");
+  }
+
   public static Boolean getAppBoolean(String key) {
     return getSharedPrefs(Injector.get().getContext()).getBoolean(key, true);
   }
