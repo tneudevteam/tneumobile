@@ -28,7 +28,7 @@ public class NewsWatcherResponseReceiver extends BroadcastReceiver {
     long firstMillis = System.currentTimeMillis();
     AlarmManager alarm = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
     alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, firstMillis,
-        AlarmManager.INTERVAL_HALF_HOUR, pIntent);
+        5000, pIntent);
   }
 
   public static void stopAlarm() {

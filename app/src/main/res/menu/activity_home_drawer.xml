@@ -3,13 +3,17 @@
 
   <group android:checkableBehavior="single">
     <item
-        android:id="@+id/nav_camera"
+        android:id="@+id/nav_map"
         android:icon="@drawable/ic_menu_map"
         android:title="Карта кампусу"/>
     <item
-        android:id="@+id/nav_gallery"
+        android:id="@+id/nav_moduleok"
         android:icon="@drawable/ic_menu_journal"
         android:title="Залікова книжка"/>
+    <item
+        android:id="@+id/nav_shedule"
+        android:icon="@drawable/ic_menu_shedule"
+        android:title="Розклади"/>
     <item
         android:id="@+id/nav_qr_code"
         android:icon="@drawable/ic_qr"
@@ -18,6 +22,13 @@
         android:id="@+id/nav_about"
         android:icon="@drawable/ic_menu_about"
         android:title="Про нас"/>
-  </group>
+    <item
+        android:id="@+id/navi_item_create_notifications"
+        android:icon="@drawable/ic_menu_notification"
+        android:title="Сповіщення"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:actionViewClass="android.support.v7.widget.SwitchCompat"
+        app:showAsAction="always" />
 
+  </group>
 </menu>

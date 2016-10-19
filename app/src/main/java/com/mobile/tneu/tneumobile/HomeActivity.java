@@ -1,18 +1,22 @@
 package com.mobile.tneu.tneumobile;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CompoundButton;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.hannesdorfmann.mosby.mvp.MvpActivity;
@@ -31,6 +35,8 @@ import java.util.List;
 public class HomeActivity extends MvpActivity<NewsView, NewsPresenter> implements ClickListener, NewsView, NavigationView.OnNavigationItemSelectedListener {
   private static final String LOG_TAG = Logger.getLogTag(HomeActivity.class);
   private NewsRecyclerViewAdapter adapter;
+
+  SwitchCompat switchCompat;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +68,9 @@ public class HomeActivity extends MvpActivity<NewsView, NewsPresenter> implement
     NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
     navigationView.setNavigationItemSelectedListener(this);
 
+    switchCompat = (SwitchCompat) MenuItemCompat.getActionView(navigationView.getMenu().findItem(R.id.navi_item_create_notifications));
+    initCheckBoxes();
+
     checkToSheduleAlarm();
 
     RecyclerView recyclerView = (RecyclerView) findViewById(R.id.news_recycler_view);
@@ -76,12 +85,41 @@ public class HomeActivity extends MvpActivity<NewsView, NewsPresenter> implement
     });
   }
 
+  @Override
+  protected void onResume() {
+    super.onResume();
+    setCheckBoxes();
+  }
+
+  private void setCheckBoxes(){
+    switchCompat.setChecked(checkSetiingsNotif());
+  }
+
+  private void initCheckBoxes() {
+    setCheckBoxes();
+    switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+      @Override
+      public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        if (isChecked) {
+          AppDefaultPrefs.remove(AppDefaultPrefs.PREFS_SETTINGS_SHOW_NOTIF);
+          NewsWatcherResponseReceiver.sheduleAlarm();
+        } else {
+          AppDefaultPrefs.putAppBoolean(AppDefaultPrefs.PREFS_SETTINGS_SHOW_NOTIF, false);
+          NewsWatcherResponseReceiver.stopAlarm();
+        }
+      }
+    });
+  }
+
   private void checkToSheduleAlarm() {
     if (AppDefaultPrefs.getAppBoolean(AppDefaultPrefs.PREFS_SETTINGS_SHOW_NOTIF)) {
       NewsWatcherResponseReceiver.sheduleAlarm();
     }
   }
 
+  private boolean checkSetiingsNotif() {
+    return AppDefaultPrefs.getAppBoolean(AppDefaultPrefs.PREFS_SETTINGS_SHOW_NOTIF);
+  }
 
   @Override
   public void onBackPressed() {
@@ -129,10 +167,10 @@ public class HomeActivity extends MvpActivity<NewsView, NewsPresenter> implement
     // Handle navigation view item clicks here.
     int id = item.getItemId();
 
-    if (id == R.id.nav_camera) {
+    if (id == R.id.nav_map) {
       Intent intent = new Intent(this, MapActivity.class);
       startActivity(intent);
-    } else if (id == R.id.nav_gallery) {
+    } else if (id == R.id.nav_moduleok) {
       Intent intent = new Intent(this, ModuleokActivity.class);
       startActivity(intent);
     } else if (id == R.id.nav_qr_code) {
@@ -140,6 +178,9 @@ public class HomeActivity extends MvpActivity<NewsView, NewsPresenter> implement
       startActivity(intent);
     } else if (id == R.id.nav_about) {
       showDialog();
+    } else if (id == R.id.nav_shedule) {
+      Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.tneu.edu.ua/timetable/"));
+      startActivity(browserIntent);
     }
 
     DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

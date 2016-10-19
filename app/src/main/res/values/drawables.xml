@@ -7,5 +7,7 @@
   <item name="ic_menu_send" type="drawable">@android:drawable/ic_menu_send</item>
   <item name="ic_menu_about" type="drawable">@android:drawable/ic_menu_info_details</item>
   <item name="ic_menu_journal" type="drawable">@android:drawable/ic_menu_edit</item>
+  <item name="ic_menu_shedule" type="drawable">@android:drawable/ic_menu_today</item>
   <item name="ic_menu_map" type="drawable">@android:drawable/ic_dialog_map</item>
+  <item name="ic_menu_notification" type="drawable">@android:drawable/stat_notify_sync</item>
 </resources>
