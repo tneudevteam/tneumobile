@@ -20,7 +20,7 @@ public class ServiceFactory {
     httpClient.addInterceptor(logging);
 
     final Retrofit restAdapter = new Retrofit.Builder()
-        .baseUrl(NewsApiService.SERVICE_ENDPOINT)
+        .baseUrl(endPoint)
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
         .client(httpClient.build())
