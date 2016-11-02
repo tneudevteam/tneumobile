@@ -6,16 +6,6 @@ package com.mobile.tneu.tneumobile.Utils;
 
 public class Logger {
 
-  public enum LogLevel {
-    ALL,
-    VERBOSE,
-    DEBUG,
-    INFO,
-    WARN,
-    ERR,
-    NONE
-  }
-
   private static LogLevel sLogLevel = LogLevel.VERBOSE;
   private static LoggingInterface logger = new AndroidLogging();
 
@@ -90,6 +80,16 @@ public class Logger {
 
   private static String stackTrace(Throwable t) {
     return logger.stackTrace(t);
+  }
+
+  public enum LogLevel {
+    ALL,
+    VERBOSE,
+    DEBUG,
+    INFO,
+    WARN,
+    ERR,
+    NONE
   }
 
 }

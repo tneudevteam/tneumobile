@@ -8,11 +8,11 @@ import android.view.View;
  */
 
 public interface ClickListener {
+  void onClick(RecyclerView.ViewHolder holder, View view, ClickType clickType, int position);
+
   enum ClickType {
     SIMPLE,
     LONG,
     DOUBLE
   }
-
-  void onClick(RecyclerView.ViewHolder holder, View view, ClickType clickType, int position);
 }

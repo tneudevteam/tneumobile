@@ -16,10 +16,6 @@ public class Injector {
 
   private Context context;
 
-  public Context getContext() {
-    return get().context;
-  }
-
   public static Injector get() {
     if (instance == null) {
       Logger.w(LOG_TAG, "instance == null");
@@ -31,6 +27,10 @@ public class Injector {
   @VisibleForTesting
   static void set(Injector injector) {
     Injector.instance = injector;
+  }
+
+  public Context getContext() {
+    return get().context;
   }
 
   public void setContext(Context context) {

@@ -11,7 +11,6 @@ import com.mobile.tneu.tneumobile.HomeActivity;
 import com.mobile.tneu.tneumobile.R;
 import com.mobile.tneu.tneumobile.Utils.AppDefaultPrefs;
 import com.mobile.tneu.tneumobile.Utils.Logger;
-import com.mobile.tneu.tneumobile.Utils.NewsUtil;
 import com.mobile.tneu.tneumobile.model.News;
 import com.mobile.tneu.tneumobile.rest.NewsApiService;
 import com.mobile.tneu.tneumobile.rest.ServiceFactory;
@@ -27,7 +26,7 @@ import rx.subscriptions.CompositeSubscription;
 
 public class NewsWatcherService extends IntentService {
   private final String LOG_TAG = Logger.getLogTag(NewsWatcherService.class);
-  private final int NOTIFICATION_ID= 1;
+  private final int NOTIFICATION_ID = 1;
   private CompositeSubscription subscriptions = new CompositeSubscription();
 
   public NewsWatcherService() {
@@ -56,10 +55,9 @@ public class NewsWatcherService extends IntentService {
           public void onError(Throwable e) {
             try {
               Log.e(LOG_TAG, e.getMessage());
+            } catch (Throwable b) {
+              e.printStackTrace();
             }
-              catch(Throwable b) {
-               e.printStackTrace();
-              }
           }
 
           @Override

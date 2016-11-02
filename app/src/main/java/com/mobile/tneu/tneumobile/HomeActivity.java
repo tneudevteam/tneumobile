@@ -34,9 +34,8 @@ import java.util.List;
 
 public class HomeActivity extends MvpActivity<NewsView, NewsPresenter> implements ClickListener, NewsView, NavigationView.OnNavigationItemSelectedListener {
   private static final String LOG_TAG = Logger.getLogTag(HomeActivity.class);
-  private NewsRecyclerViewAdapter adapter;
-
   SwitchCompat switchCompat;
+  private NewsRecyclerViewAdapter adapter;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +90,7 @@ public class HomeActivity extends MvpActivity<NewsView, NewsPresenter> implement
     setCheckBoxes();
   }
 
-  private void setCheckBoxes(){
+  private void setCheckBoxes() {
     switchCompat.setChecked(checkSetiingsNotif());
   }
 
