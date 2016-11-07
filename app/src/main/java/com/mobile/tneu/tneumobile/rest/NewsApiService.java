@@ -13,7 +13,7 @@ import rx.Observable;
  */
 
 public interface NewsApiService {
-  String SERVICE_ENDPOINT = "http://139.59.211.163/";
+  String SERVICE_ENDPOINT = "http://tneu-api.ml/";
   int GET_NEWS_LIMIT = 15;
 
   @GET("/snippets")
