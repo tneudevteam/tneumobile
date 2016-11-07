@@ -22,6 +22,7 @@ public class ModuleokActivity extends AppCompatActivity {
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_moduleok);
+
     webView = (WebView) findViewById(R.id.web_view_moduleok);
 //    progress = (ProgressBar) findViewById(R.id.progressBar);
     startWebView("http://modulok.ml/auth");
@@ -41,8 +42,8 @@ public class ModuleokActivity extends AppCompatActivity {
       //TODO: fix loading view
       @Override
       public boolean shouldOverrideUrlLoading(WebView view, String url) {
-        view.loadUrl(url);
-        return true;
+//        view.loadUrl(url);
+        return false;
       }
 
       @Override
@@ -61,6 +62,7 @@ public class ModuleokActivity extends AppCompatActivity {
     });
 
     WebSettings webSettings = webView.getSettings();
+    webSettings.setDomStorageEnabled(true);
     webSettings.setJavaScriptEnabled(true);
     webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
     webView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);

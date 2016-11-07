@@ -33,6 +33,7 @@ public class MapActivity extends AppCompatActivity {
     });
 
     WebSettings webSettings = webView.getSettings();
+    webSettings.setDomStorageEnabled(true);
     webSettings.setJavaScriptEnabled(true);
     webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
 
