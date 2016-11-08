@@ -31,13 +31,13 @@ dependencies {
   compile "com.squareup.picasso:picasso:$picassoVersion"
 
   // mvp
-  compile 'com.hannesdorfmann.mosby:mvp:2.0.1'
-  compile 'com.hannesdorfmann.mosby:viewstate:2.0.1'
+  compile "com.hannesdorfmann.mosby:mvp:$mosbyVersion"
+  compile "com.hannesdorfmann.mosby:viewstate:$mosbyVersion"
 
   // easy api interface
   compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
   compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
-  compile 'com.squareup.okhttp3:logging-interceptor:3.3.1'
+  compile "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
   compile "com.squareup.retrofit2:adapter-rxjava:$retrofitVersion"
 
   // rxAndroid dependency
@@ -45,9 +45,9 @@ dependencies {
   compile "io.reactivex:rxjava:$rxJavaVersion"
 
   //QR
-  compile 'me.dm7.barcodescanner:zxing:1.8.4'
+  compile "me.dm7.barcodescanner:zxing:$barcodescannerVersion"
 
-  compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha9'
 
-  compile 'com.afollestad.material-dialogs:core:0.9.0.2'
+  compile "com.afollestad.material-dialogs:core:$materialDialogsVersion"
+  compile 'com.android.support.constraint:constraint-layout:1.0.0-beta3'
 }
