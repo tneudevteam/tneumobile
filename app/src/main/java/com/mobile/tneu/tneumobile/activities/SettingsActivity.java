@@ -1,4 +1,4 @@
-package com.mobile.tneu.tneumobile;
+package com.mobile.tneu.tneumobile.activities;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 
+import com.mobile.tneu.tneumobile.R;
 import com.mobile.tneu.tneumobile.Utils.AppDefaultPrefs;
 import com.mobile.tneu.tneumobile.service.NewsWatcherResponseReceiver;
 

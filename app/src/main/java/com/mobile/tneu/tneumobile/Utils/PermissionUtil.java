@@ -11,7 +11,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 
-import com.mobile.tneu.tneumobile.QRscannerActivity;
+import com.mobile.tneu.tneumobile.activities.QRscannerActivity;
 import com.mobile.tneu.tneumobile.R;
 import com.mobile.tneu.tneumobile.ui.CenteredSnackbar;
 

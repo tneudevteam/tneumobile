@@ -1,4 +1,4 @@
-package com.mobile.tneu.tneumobile;
+package com.mobile.tneu.tneumobile.activities;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 
 import com.google.zxing.Result;
+import com.mobile.tneu.tneumobile.R;
 import com.mobile.tneu.tneumobile.Utils.Logger;
 import com.mobile.tneu.tneumobile.Utils.PermissionUtil;
 

@@ -1,4 +1,4 @@
-package com.mobile.tneu.tneumobile;
+package com.mobile.tneu.tneumobile.activities;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,6 +7,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.mobile.tneu.tneumobile.R;
 import com.mobile.tneu.tneumobile.Utils.Logger;
 
 /**

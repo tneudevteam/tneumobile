@@ -7,7 +7,7 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.util.Log;
 
-import com.mobile.tneu.tneumobile.HomeActivity;
+import com.mobile.tneu.tneumobile.activities.HomeActivity;
 import com.mobile.tneu.tneumobile.R;
 import com.mobile.tneu.tneumobile.Utils.AppDefaultPrefs;
 import com.mobile.tneu.tneumobile.Utils.Logger;

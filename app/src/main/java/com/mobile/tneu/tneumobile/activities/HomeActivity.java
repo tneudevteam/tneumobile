@@ -1,4 +1,4 @@
-package com.mobile.tneu.tneumobile;
+package com.mobile.tneu.tneumobile.activities;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -20,6 +20,7 @@ import android.widget.CompoundButton;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.hannesdorfmann.mosby.mvp.MvpActivity;
+import com.mobile.tneu.tneumobile.R;
 import com.mobile.tneu.tneumobile.Utils.AppDefaultPrefs;
 import com.mobile.tneu.tneumobile.Utils.Injector;
 import com.mobile.tneu.tneumobile.Utils.Logger;

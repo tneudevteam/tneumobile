@@ -1,4 +1,4 @@
-package com.mobile.tneu.tneumobile;
+package com.mobile.tneu.tneumobile.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,11 +6,13 @@ import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.view.Window;
 
+import com.mobile.tneu.tneumobile.R;
+
 /**
  * Created by stepanv on 18.10.16.
  */
 
-public class Splashscreen extends Activity {
+public class SplashscreenActivity extends Activity {
   /**
    * Called when the activity is first created.
    */
@@ -40,15 +42,15 @@ public class Splashscreen extends Activity {
             sleep(100);
             waited += 100;
           }
-          Intent intent = new Intent(Splashscreen.this,
+          Intent intent = new Intent(SplashscreenActivity.this,
               HomeActivity.class);
           intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
           startActivity(intent);
-          Splashscreen.this.finish();
+          SplashscreenActivity.this.finish();
         } catch (InterruptedException e) {
           // do nothing
         } finally {
-          Splashscreen.this.finish();
+          SplashscreenActivity.this.finish();
         }
 
       }
