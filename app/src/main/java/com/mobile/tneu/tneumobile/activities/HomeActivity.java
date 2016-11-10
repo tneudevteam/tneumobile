@@ -21,13 +21,13 @@ import android.widget.CompoundButton;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.hannesdorfmann.mosby.mvp.MvpActivity;
 import com.mobile.tneu.tneumobile.R;
+import com.mobile.tneu.tneumobile.Utils.AlarmUtil;
 import com.mobile.tneu.tneumobile.Utils.AppDefaultPrefs;
 import com.mobile.tneu.tneumobile.Utils.Injector;
 import com.mobile.tneu.tneumobile.Utils.Logger;
 import com.mobile.tneu.tneumobile.adapter.NewsRecyclerViewAdapter;
 import com.mobile.tneu.tneumobile.model.News;
 import com.mobile.tneu.tneumobile.presenter.NewsPresenter;
-import com.mobile.tneu.tneumobile.service.NewsWatcherResponseReceiver;
 import com.mobile.tneu.tneumobile.ui.NewsView;
 import com.mobile.tneu.tneumobile.ui.activities.ClickListener;
 
@@ -102,10 +102,10 @@ public class HomeActivity extends MvpActivity<NewsView, NewsPresenter> implement
       public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         if (isChecked) {
           AppDefaultPrefs.remove(AppDefaultPrefs.PREFS_SETTINGS_SHOW_NOTIF);
-          NewsWatcherResponseReceiver.sheduleAlarm();
+          AlarmUtil.sheduleAlarm();
         } else {
           AppDefaultPrefs.putAppBoolean(AppDefaultPrefs.PREFS_SETTINGS_SHOW_NOTIF, false);
-          NewsWatcherResponseReceiver.stopAlarm();
+          AlarmUtil.stopAlarm();
         }
       }
     });
@@ -113,7 +113,7 @@ public class HomeActivity extends MvpActivity<NewsView, NewsPresenter> implement
 
   private void checkToSheduleAlarm() {
     if (AppDefaultPrefs.getAppBoolean(AppDefaultPrefs.PREFS_SETTINGS_SHOW_NOTIF)) {
-      NewsWatcherResponseReceiver.sheduleAlarm();
+      AlarmUtil.sheduleAlarm();
     }
   }
 

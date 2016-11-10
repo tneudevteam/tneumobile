@@ -7,8 +7,8 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 
 import com.mobile.tneu.tneumobile.R;
+import com.mobile.tneu.tneumobile.Utils.AlarmUtil;
 import com.mobile.tneu.tneumobile.Utils.AppDefaultPrefs;
-import com.mobile.tneu.tneumobile.service.NewsWatcherResponseReceiver;
 
 /**
  * Created by stepanv on 18.10.16.
@@ -28,10 +28,10 @@ public class SettingsActivity extends AppCompatActivity {
       public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         if (isChecked) {
           AppDefaultPrefs.remove(AppDefaultPrefs.PREFS_SETTINGS_SHOW_NOTIF);
-          NewsWatcherResponseReceiver.sheduleAlarm();
+          AlarmUtil.sheduleAlarm();
         } else {
           AppDefaultPrefs.putAppBoolean(AppDefaultPrefs.PREFS_SETTINGS_SHOW_NOTIF, false);
-          NewsWatcherResponseReceiver.stopAlarm();
+          AlarmUtil.stopAlarm();
         }
       }
     });
