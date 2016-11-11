@@ -22,7 +22,7 @@ public class AlarmUtil {
     long firstMillis = System.currentTimeMillis();
     AlarmManager alarm = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
     alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, firstMillis,
-        1000, pIntent);
+        AlarmManager.INTERVAL_HALF_HOUR, pIntent);
   }
 
   public static void stopAlarm() {
