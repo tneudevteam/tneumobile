@@ -1,0 +1,48 @@
+package com.tneu.tneumobile.activities;
+
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+
+import com.tneu.tneumobile.R;
+import com.tneu.tneumobile.Utils.AlarmUtil;
+import com.tneu.tneumobile.Utils.AppDefaultPrefs;
+
+/**
+ * Created by stepanv on 18.10.16.
+ */
+
+public class SettingsActivity extends AppCompatActivity {
+  CheckBox checkNotification;
+
+  @Override
+  protected void onCreate(@Nullable Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_settings);
+
+    checkNotification = (CheckBox) findViewById(R.id.check_notifications);
+    checkNotification.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+      @Override
+      public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        if (isChecked) {
+          AppDefaultPrefs.remove(AppDefaultPrefs.PREFS_SETTINGS_SHOW_NOTIF);
+          AlarmUtil.sheduleAlarm();
+        } else {
+          AppDefaultPrefs.putAppBoolean(AppDefaultPrefs.PREFS_SETTINGS_SHOW_NOTIF, false);
+          AlarmUtil.stopAlarm();
+        }
+      }
+    });
+
+    setCheckboxes();
+  }
+
+  private void setCheckboxes() {
+    if (AppDefaultPrefs.getAppBoolean(AppDefaultPrefs.PREFS_SETTINGS_SHOW_NOTIF)) {
+      checkNotification.setChecked(true);
+    }
+  }
+
+}
