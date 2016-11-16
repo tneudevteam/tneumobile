@@ -9,18 +9,6 @@ public class Logger {
   private static LogLevel sLogLevel = LogLevel.VERBOSE;
   private static LoggingInterface logger = new AndroidLogging();
 
-  public static LogLevel getLogLevel() {
-    return sLogLevel;
-  }
-
-  public static void setLogLevel(LogLevel logLevel) {
-    Logger.sLogLevel = logLevel;
-  }
-
-  public static void setLogger(LoggingInterface logger) {
-    Logger.logger = logger;
-  }
-
   private static boolean isLogEnabled(LogLevel level) {
     return sLogLevel.ordinal() <= level.ordinal();
   }
@@ -29,9 +17,6 @@ public class Logger {
     return classObj.getName();
   }
 
-  public static String getLogTag(Object obj) {
-    return obj == null ? "null" : obj.getClass().getName();
-  }
 
   private static String arrayToString(Object... arr) {
     StringBuilder builder = new StringBuilder();
