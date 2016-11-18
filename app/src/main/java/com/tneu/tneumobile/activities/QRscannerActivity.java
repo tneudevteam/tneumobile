@@ -42,8 +42,8 @@ public class QRscannerActivity extends AppCompatActivity implements ZXingScanner
   public void handleResult(Result result) {
     //Do anything with result here :D
     Logger.d("handleResult", result.getText());
-    if (result.getText().toString().contains("http://") || result.getText().toString().contains("https://")) {
-      startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(result.getText().toString())));
+    if (result.getText().contains("http://") || result.getText().contains("https://")) {
+      startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(result.getText())));
     } else {
       AlertDialog.Builder builder = new AlertDialog.Builder(this);
       builder.setTitle("scan result");
