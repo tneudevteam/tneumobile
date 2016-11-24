@@ -15,7 +15,6 @@ import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.CompoundButton;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -29,11 +28,10 @@ import com.tneu.tneumobile.adapter.NewsRecyclerViewAdapter;
 import com.tneu.tneumobile.model.News;
 import com.tneu.tneumobile.presenter.NewsPresenter;
 import com.tneu.tneumobile.ui.NewsView;
-import com.tneu.tneumobile.ui.activities.ClickListener;
 
 import java.util.List;
 
-public class HomeActivity extends MvpActivity<NewsView, NewsPresenter> implements ClickListener, NewsView, NavigationView.OnNavigationItemSelectedListener {
+public class HomeActivity extends MvpActivity<NewsView, NewsPresenter> implements NewsView, NavigationView.OnNavigationItemSelectedListener {
   private static final String LOG_TAG = Logger.getLogTag(HomeActivity.class);
   SwitchCompat switchCompat;
   private NewsRecyclerViewAdapter adapter;
@@ -200,10 +198,5 @@ public class HomeActivity extends MvpActivity<NewsView, NewsPresenter> implement
   @Override
   public void onNewsReceived(List<News> news) {
     adapter.addAll(news);
-  }
-
-  @Override
-  public void onClick(RecyclerView.ViewHolder holder, View view, ClickType clickType, int position) {
-
   }
 }
