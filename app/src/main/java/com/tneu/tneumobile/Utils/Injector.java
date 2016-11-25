@@ -24,11 +24,6 @@ public class Injector {
     return instance;
   }
 
-  @VisibleForTesting
-  static void set(Injector injector) {
-    Injector.instance = injector;
-  }
-
   public Context getContext() {
     return get().context;
   }
