@@ -41,7 +41,7 @@ public class NewsWatcherService extends IntentService {
 
   @Override
   protected void onHandleIntent(Intent intent) {
-    Log.d(LOG_TAG, "Watcher handle intent");
+    Logger.d(LOG_TAG, "Watcher handle intent");
     NewsApiService service = ServiceFactory.createRetrofitService(NewsApiService.class, NewsApiService.SERVICE_ENDPOINT);
     String lastLoadedNewsDate = AppDefaultPrefs.getAppString(AppDefaultPrefs.PREFS_DATE_KEY, getApplicationContext());
     subscriptions.add(service.getNewsAfterDate(lastLoadedNewsDate)

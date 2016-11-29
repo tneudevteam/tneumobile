@@ -19,7 +19,7 @@ public class NewsWatcherResponseReceiver extends BroadcastReceiver {
   public void onReceive(Context context, Intent intent) {
     Intent i = new Intent(context, NewsWatcherService.class);
     context.startService(i);
-    Log.d(LOG_TAG, "Response Received");
+    Logger.d(LOG_TAG, "Response Received");
   }
 
 }
